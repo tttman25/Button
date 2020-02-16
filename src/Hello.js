@@ -1,66 +1,70 @@
-import React, { Component } from 'react';
-import { Animate } from 'react-move';
-import _ from 'lodash';
+import React, { Component } from "react";
+import { Animate } from "react-move";
+var xcoor = 250;
+var ycoor = 250;
+var dur = 10;
 
 export default class Hello extends Component {
-  
   constructor(props) {
     super(props);
     this.state = {
-      left: 0,
-      color: 'blue',
-      duration: 300
+      left: xcoor,
+      top: ycoor
     };
   }
-  
+
   toggleButtonPosition = () => {
     let left = 0;
     if (!this.state.left || this.state.left === 0) {
       left = Math.random() * 300 + 50;
-    }    
-    let duration = Math.random() * 300 + 200;
-    let color = _.sample(['red', 'blue', 'black', 'green']);
+    }
+    let top = 0;
+    if (!this.state.top || this.state.top === 0) {
+      top = Math.random() * 300 + 50;
+    }
+    let duration = dur;
     this.setState({
       left,
-      color,
+      top,
       duration
-    })
-  }
-  
+    });
+  };
+
   render() {
-    let { left, color, duration } = this.state;
+    let { left, top, duration } = this.state;
     return (
-      <div>        
-        <Animate          
+      <div>
+        <Animate
           data={{
             left: left,
-            color: color
+            top: top
           }}
           default={{
-            left: 0,
-            color: 'blue'
+            left: 250,
+            top: 250,
+            color: "blue"
           }}
           duration={duration}
-          easing='easeQuadIn' 
+          easing="easeQuadIn"
         >
           {data => (
             <div
               style={{
-                  transform: `translate(${data.left}px, 0)`,
-                  background: data.color || 'blue',
-                  position: 'absolute',
-                  width: 50,
-                  height: 50,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 10,
-                  color: 'white',
-                  cursor: 'pointer'
+                transform: `translate(${data.top}px, ${data.left}px)`, //${data.top}px
+                background: "blue", //color should change
+                position: "absolute",
+                width: 80,
+                height: 40,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 10,
+                color: "white",
+                cursor: "pointer"
               }}
               onClick={this.toggleButtonPosition}
             >
-              Hello
+              Press Me
             </div>
           )}
         </Animate>
