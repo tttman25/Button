@@ -3,7 +3,7 @@
   "description": null,
   "version": "0.0.17",
   "dependencies": {
-    "lodash": "4.17.4",
+    "lodash": "4.17.19",
     "react": "15.5.3",
     "react-dom": "15.5.3",
     "react-move": "1.1.8"
